@@ -1,0 +1,466 @@
+:root {
+  --bg: #f7efe4;
+  --bg-accent: #f2dcc8;
+  --surface: rgba(255, 251, 246, 0.82);
+  --surface-strong: #fffaf4;
+  --text: #1f1a17;
+  --muted: #6f6358;
+  --line: rgba(73, 51, 35, 0.14);
+  --primary: #1d6b57;
+  --primary-strong: #145040;
+  --warn: #a94b3b;
+  --warn-soft: rgba(169, 75, 59, 0.12);
+  --ok: #21644a;
+  --ok-soft: rgba(33, 100, 74, 0.12);
+  --shadow: 0 18px 40px rgba(74, 49, 27, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Segoe UI Variable Display", "Aptos", "Trebuchet MS", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.55), transparent 30%),
+    linear-gradient(135deg, var(--bg), var(--bg-accent));
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.92em;
+}
+
+.app-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 24px;
+}
+
+.hero {
+  padding: 16px 0 24px;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.brand-icon {
+  position: relative;
+  width: 64px;
+  height: 48px;
+}
+
+.card-shape {
+  position: absolute;
+  display: block;
+  border-radius: 12px;
+}
+
+.card-back {
+  inset: 10px 0 0 18px;
+  background: linear-gradient(145deg, #f5c38c, #d88f52);
+  opacity: 0.72;
+  transform: rotate(7deg);
+}
+
+.card-front {
+  inset: 0 10px 8px 0;
+  background: linear-gradient(135deg, #12473a, #1d6b57 58%, #2d9677);
+  box-shadow: 0 14px 28px rgba(20, 80, 64, 0.22);
+  overflow: hidden;
+}
+
+.card-front::before {
+  content: "";
+  position: absolute;
+  right: -8px;
+  bottom: 10px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.chip {
+  position: absolute;
+  top: 13px;
+  left: 14px;
+  width: 17px;
+  height: 13px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #f6df9c, #d3ab56);
+}
+
+.signal {
+  position: absolute;
+  border: 2px solid rgba(255, 247, 235, 0.9);
+  border-left: 0;
+  border-bottom: 0;
+  border-radius: 0 18px 0 0;
+}
+
+.signal-one {
+  right: 14px;
+  bottom: 12px;
+  width: 14px;
+  height: 14px;
+}
+
+.signal-two {
+  right: 14px;
+  bottom: 12px;
+  width: 22px;
+  height: 22px;
+  opacity: 0.7;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.brand-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.brand-subtitle {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.eyebrow,
+.panel-label {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero h1,
+.panel h2,
+.result-state h3 {
+  margin: 0;
+  line-height: 1.02;
+}
+
+.hero h1 {
+  max-width: 700px;
+  font-size: clamp(1.7rem, 4vw, 3rem);
+}
+
+.hero-copy {
+  max-width: 760px;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
+.hero-actions,
+.input-footer,
+.panel-heading,
+.workspace {
+  display: flex;
+}
+
+.hero-actions {
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.workspace {
+  gap: 14px;
+  align-items: stretch;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  backdrop-filter: blur(18px);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.input-panel {
+  flex: 1.45;
+  min-width: 0;
+  padding: 16px;
+}
+
+.side-panel {
+  flex: 0.8;
+  min-width: 290px;
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  align-content: start;
+}
+
+.panel-heading,
+.input-footer {
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.panel h2 {
+  font-size: 1.35rem;
+}
+
+textarea {
+  width: 100%;
+  min-height: 460px;
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  resize: vertical;
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--text);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+textarea:focus,
+.button:focus,
+.icon-button:focus,
+.file-button:focus-within {
+  outline: 2px solid rgba(29, 107, 87, 0.2);
+  outline-offset: 2px;
+}
+
+.status-message {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.button,
+.icon-button {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease, opacity 180ms ease;
+}
+
+.button:hover,
+.icon-button:hover {
+  transform: translateY(-1px);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.button-primary {
+  background: var(--primary);
+  color: #f8f3ec;
+}
+
+.button-primary:hover {
+  background: var(--primary-strong);
+}
+
+.button-secondary,
+.icon-button {
+  background: rgba(255, 255, 255, 0.64);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.icon-button {
+  min-width: 78px;
+  min-height: 38px;
+  padding: 0 12px;
+  font-size: 0.9rem;
+}
+
+.file-button {
+  position: relative;
+}
+
+#fileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.result-card,
+.helper-card {
+  padding: 14px;
+  border-radius: 8px;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+}
+
+.result-state {
+  display: grid;
+  gap: 14px;
+}
+
+.result-state h3 {
+  font-size: 1.65rem;
+}
+
+.result-state p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+  font-size: 0.94rem;
+}
+
+.result-badge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.result-state.idle .result-badge {
+  background: rgba(78, 67, 59, 0.1);
+  color: #5c4a42;
+}
+
+.result-state.normal .result-badge {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.result-state.fraud .result-badge {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.metrics {
+  display: grid;
+  gap: 10px;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.92rem;
+}
+
+.metric:first-child {
+  border-top: 0;
+}
+
+.metric span:last-child {
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.helper-copy {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+  font-size: 0.92rem;
+}
+
+.field-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.field-chip {
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(29, 107, 87, 0.08);
+  color: #184c3e;
+  font-size: 0.78rem;
+}
+
+.status-error {
+  color: var(--warn);
+}
+
+.status-success {
+  color: var(--ok);
+}
+
+@media (max-width: 960px) {
+  .workspace {
+    flex-direction: column;
+  }
+
+  .side-panel {
+    min-width: 0;
+  }
+
+  textarea {
+    min-height: 380px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    width: min(100% - 20px, 1180px);
+    padding-top: 18px;
+  }
+
+  .brand-mark {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .brand-icon {
+    width: 58px;
+    height: 44px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.6rem, 8vw, 2.3rem);
+  }
+
+  .input-footer,
+  .panel-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .button,
+  .icon-button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ipynb
+creditcard.csv
+.env
+.DS_Store

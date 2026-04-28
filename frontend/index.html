@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fraud Detection Console</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <script>
+    window.API_BASE_URL = window.API_BASE_URL || "";
+  </script>
+  <main class="app-shell">
+    <section class="hero">
+      <div class="brand-mark" aria-label="Credit card fraud detection logo">
+        <div class="brand-icon" aria-hidden="true">
+          <span class="card-shape card-back"></span>
+          <span class="card-shape card-front">
+            <span class="chip"></span>
+            <span class="signal signal-one"></span>
+            <span class="signal signal-two"></span>
+          </span>
+        </div>
+        <div class="brand-copy">
+          <span class="brand-title">CardShield</span>
+          <span class="brand-subtitle">Fraud Detection Console</span>
+        </div>
+      </div>
+      <p class="eyebrow">Credit Card Fraud Detection API</p>
+      <h1>Paste one transaction as JSON and score it instantly.</h1>
+      <p class="hero-copy">
+        This UI is built for your backend contract: one transaction object with
+        <code>Time</code>, <code>V1</code> to <code>V28</code>, and <code>Amount</code>.
+      </p>
+      <div class="hero-actions">
+        <button id="sampleButton" class="button button-primary" type="button">Use sample JSON</button>
+        <label class="button button-secondary file-button" for="fileInput">Upload .json</label>
+        <input id="fileInput" type="file" accept=".json,application/json">
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="panel input-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="panel-label">Transaction Input</p>
+            <h2>JSON payload</h2>
+          </div>
+          <button id="formatButton" class="icon-button" type="button" aria-label="Format JSON">Format</button>
+        </div>
+
+        <textarea
+          id="jsonInput"
+          spellcheck="false"
+          aria-label="Transaction JSON input"
+          placeholder='{
+  "Time": 0.0,
+  "V1": 0.0,
+  "V2": 0.0,
+  "...": "...",
+  "V28": 0.0,
+  "Amount": 0.0
+}'
+        ></textarea>
+
+        <div class="input-footer">
+          <p id="statusMessage" class="status-message">Ready for one transaction object.</p>
+          <button id="predictButton" class="button button-primary" type="button">Predict</button>
+        </div>
+      </div>
+
+      <div class="panel side-panel">
+        <div class="result-card">
+          <p class="panel-label">Prediction</p>
+          <div id="resultState" class="result-state idle">
+            <span class="result-badge">Waiting</span>
+            <h3>No result yet</h3>
+            <p>Run a prediction to see whether the transaction looks normal or fraudulent.</p>
+          </div>
+        </div>
+
+        <div class="helper-card">
+          <p class="panel-label">Expected Fields</p>
+          <p class="helper-copy">
+            Required keys: <code>Time</code>, <code>V1</code> through <code>V28</code>, and <code>Amount</code>.
+          </p>
+          <div id="fieldList" class="field-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./index.js"></script>
+</body>
+</html>
