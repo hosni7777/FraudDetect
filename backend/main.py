@@ -8,14 +8,11 @@ import os
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
-# ─────────────────────────────────────────────
-#  Lifespan — load model & scaler once at startup
-# ─────────────────────────────────────────────
+
 ml = {}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # This path logic correctly jumps from backend/ to the root
     base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     ml["model"]  = joblib.load(os.path.join(base, "model", "random_forest.pkl"))
     ml["scaler"] = joblib.load(os.path.join(base, "model", "scaler.pkl"))
@@ -35,20 +32,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ─────────────────────────────────────────────
-#  Frontend Serving (Keep these at the top of routes)
-# ─────────────────────────────────────────────
 
-# Mount the static folder so index.html can find index.css and index.js
 app.mount("/frontend", StaticFiles(directory="frontend"), name="frontend")
 
 @app.get("/")
 async def read_index():
     return FileResponse("frontend/index.html")
 
-# ─────────────────────────────────────────────
-#  Schemas
-# ─────────────────────────────────────────────
 class TransactionInput(BaseModel):
     Time: float
     V1: float;  V2: float;  V3: float;  V4: float
@@ -66,11 +56,8 @@ class PredictionResult(BaseModel):
     fraud_probability: float
     normal_probability: float
 
-# ─────────────────────────────────────────────
-#  Routes
-# ─────────────────────────────────────────────
 
-# Renamed to /health so it doesn't conflict with the website
+
 @app.get("/health", tags=["Health"])
 def health_check():
     return {"status": "ok", "message": "Fraud Detection API is running."}
